@@ -1,4 +1,4 @@
-import { useParams, Link, NavLink } from "react-router-dom";
+import { useParams, Link, NavLink, useNavigate } from "react-router-dom";
 import useStore from "./Store.js";
 
 export default function GenrePage () 
@@ -10,10 +10,16 @@ export default function GenrePage ()
     const selectedGenres = [];
     useStore.movies.forEach((movie) => movie.genres.forEach((genre) => selectedGenres.includes(genre) ? null : selectedGenres.push(genre))); // 영화 장르 종류 분류
     
+    const navigate = useNavigate();
+
+    const navigateToHome = () =>{
+      navigate('/');
+    }
+
     return(
       <div>
       <h1>장르별 페이지 - {genre}</h1>
-      <Link to = '../../'> 홈으로 돌아가기 </Link>
+      <h2><button onClick = {navigateToHome}>홈으로 돌아가기</button></h2>
       <div className = "menuButtonBox">
         {selectedGenres.map((genre) =>(
           <div>

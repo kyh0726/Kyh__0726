@@ -1,4 +1,4 @@
-import { useParams, Link, NavLink } from "react-router-dom";
+import { useParams, Link, NavLink, useNavigate } from "react-router-dom";
 import "../App.css";
 import useStore from "./Store.js";
 
@@ -16,11 +16,17 @@ export default function YearPage ()
 
     const moviesYear = useStore.movies.filter((movie) => movie.year == year); 
     
+    const navigate = useNavigate();
+
+    const navigateToHome = () =>{
+      navigate('/');
+    }
+
 
     return(
         <div>
             <h1>연도별 페이지 -{year} 년도</h1>
-            <Link to = '../../'> 홈으로 돌아가기 </Link>
+            <h2><button onClick = {navigateToHome}>홈으로 돌아가기</button></h2>
             <div className = "menuButtonBox">
               {years.map((year) =>(
                 <div>

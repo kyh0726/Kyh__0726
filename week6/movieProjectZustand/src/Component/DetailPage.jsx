@@ -23,13 +23,16 @@ export default function DetailPage(){
 
     return(
 
-        <div>
-            <h1>디테일 정보 페이지</h1>
-            <button onClick = {backButton}>뒤로가기</button>
+        <div className = "movieFrame">
+
             {movie.map((movie) => 
-            <div>
-                
-                <img src={`${movie.medium_cover_image}`}/>
+            <div className = "movieBackground" style= {{backgroundImage : `url(${movie.large_cover_image})` , opacity : 0.5} }>
+                <h1>디테일 정보 페이지 </h1>
+                <h2><button onClick = {backButton}>뒤로가기</button></h2>
+                <h1>{movie.title_long}</h1>
+                <div>
+                    <img src={`${movie.medium_cover_image}`}/>
+                </div>
                 {movie.like == -1 ? <button onClick = {likeButton}> 좋아요누르기 </button>
                  : <button onClick = {likeButton}> 좋아요 취소 </button>}
                 <div> 설명 : {movie.summary}</div>
